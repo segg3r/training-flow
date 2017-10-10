@@ -1,0 +1,26 @@
+extends layout
+
+block content
+  .ui.segment
+    if lesson.state === 'completed'
+      .ui.green.ribbon.label Completed
+    else if lesson.state === 'in_progress'
+      .ui.orange.ribbon.label In Progress
+    span #{lesson.name}
+    p(style="margin-top: 10px;") #{lesson.description}
+    if lesson.feedback.length > 0
+      .ui.segment.feed
+        h4.ui.header Feedback:
+        for feed in lesson.feedback
+          .event
+            .label
+              img(src="#{feed.author.avatar}")
+            .content
+              .summary
+                a.user #{feed.author.name}
+              .extra.text #{feed.text}
+    if lesson.state === 'in_progress'
+      .ui.positive.button
+        i.checkmark.icon
+        span Submit
+  

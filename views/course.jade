@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  if course.state === 'no_integration'
+    .ui.three.top.attached.steps
+      .active.step
+        i.bitbucket.icon
+        .content
+          .title Open Bitbucket
+      .disabled.step
+        i.fork.icon
+        .content
+          .title Fork repository
+      .disabled.step
+        i.checkmark.icon
+        .content
+          .title Confirm registration
+    .ui.attached.segment
+    .ui.bottom.attached.center.aligned.segment
+      .ui.right.labeled.icon.positive.button
+        i.right.arrow.icon
+        span Next
