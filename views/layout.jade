@@ -42,7 +42,7 @@ html
                           else
                             i.long.arrow.right.icon
 
-                          if index <= course.current_lesson_index
+                          if lesson.state === 'completed' || lesson.state === 'in_progress'
                             a(href="/courses/#{course.id}/lessons/#{lesson.id}") #{lesson.name}
                           else
                             span #{lesson.name}
