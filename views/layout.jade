@@ -35,9 +35,9 @@ html
                     each lesson, index in course.lessons
                       .item
                         .content
-                          if index < course.current_lesson_index
+                          if lesson.state === 'completed'
                             i.checkmark.icon
-                          else if index === course.current_lesson_index
+                          else if lesson.state === 'in_progress'
                             i.long.arrow.right.icon
                           else
                             i.long.arrow.right.icon

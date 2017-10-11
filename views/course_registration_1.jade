@@ -1,0 +1,25 @@
+extends layout
+
+block content
+  .ui.three.top.attached.steps
+    .active.step
+      i.bitbucket.icon
+      .content
+        .title Open Bitbucket
+    .disabled.step
+      i.fork.icon
+      .content
+        .title Fork repository
+    .disabled.step
+      i.checkmark.icon
+      .content
+        .title Confirm registration
+  .ui.attached.segment
+    span Open Bitbucket repository at&nbsp
+    a(href="#{course.source_repository}" target="_blank") #{course.source_repository}
+  .ui.bottom.attached.segment
+    a.ui.tiny.right.labeled.icon.positive.button(href="/courses/#{course.id}/registration/step/#{stepId + 1}")
+      i.right.arrow.icon
+      span Next
+    
+      

@@ -1,0 +1,38 @@
+extends layout
+
+block content
+  .ui.three.top.attached.steps
+    .step
+      i.bitbucket.icon
+      .content
+        .title Open Bitbucket
+    .step
+      i.fork.icon
+      .content
+        .title Fork repository
+    .active.step
+      i.checkmark.icon
+      .content
+        .title Confirm registration
+  .ui.attached.segment
+    span We will check if you forked repository and granted access to it.
+  .ui.bottom.attached.segment
+    a.ui.tiny.labeled.icon.button(href="/courses/#{course.id}/registration/step/#{stepId - 1}")
+      i.left.arrow.icon
+      span Back
+    a#verify_course_registration_button.ui.tiny.right.labeled.icon.positive.button
+      i.checkmark.icon
+      span Verify
+  
+  script.
+    $(document).ready(function() {
+      var courseRegistrationButton = $('#verify_course_registration_button');
+      courseRegistrationButton.on('click', function() {
+        courseRegistrationButton.addClass('loading');
+        $.post('/courses/#{course.id}/register', function(response) {
+          if (response === 'ok') {
+            window.location.href ='/courses/#{course.id}';
+          }
+        });
+      });
+    });

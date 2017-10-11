@@ -6,8 +6,8 @@ block content
       .ui.green.ribbon.label Completed
     else if lesson.state === 'in_progress'
       .ui.orange.ribbon.label In Progress
-    span #{lesson.name}
-    p(style="margin-top: 10px;") #{lesson.description}
+    span(style="font-weight: bolder;") #{lesson.name}
+    p(style="margin-top: 20px;") #{lesson.description}
     if lesson.feedback.length > 0
       .ui.segment.feed
         h4.ui.header Feedback:
@@ -20,7 +20,20 @@ block content
                 a.user #{feed.author.name}
               .extra.text #{feed.text}
     if lesson.state === 'in_progress'
-      .ui.positive.button
+      #submit_lesson_button.ui.tiny.positive.button
         i.checkmark.icon
         span Submit
+
+  script.
+    $(document).ready(function() {
+      var submitLessonButton = $('#submit_lesson_button');
+      submitLessonButton.on('click', function() {
+        submitLessonButton.addClass('loading');
+        $.post('/courses/#{course.id}/lessons/#{lesson.id}/submit', function(response) {
+          if (response === 'ok') {
+            window.location.href ='/courses/#{course.id}';
+          }
+        });
+      });
+    });
   
